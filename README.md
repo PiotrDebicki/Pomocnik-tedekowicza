@@ -1,0 +1,2 @@
+# Pomocnik tedekowicza
+ 
