@@ -15,3 +15,8 @@ def index():
 @app.route('/krzywe-przejsciowe', methods=['GET', 'POST'])
 def krzywe_przejsciowe():
     return render_template('krzywe-przejsciowe.html')
+
+@app.errorhandler(404)
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('error.html'), 404
