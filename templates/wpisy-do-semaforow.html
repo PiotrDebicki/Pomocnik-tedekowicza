@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div>
+    <table style="margin-left: auto;margin-right: auto;">
+        <tr>
+            <th colspan="3">
+                <p>Generator wpisów do semaforów</p>
+            </th>
+        </tr>
+        <tr style="border-color: black; border-width: 0.1ch;">
+            <td>
+                <select class="form-select" aria-label="Typ semafora" id="typ" onchange="type_change()">
+                    <option disabled>Typ semafora</option>
+                    <option value="1" selected>Semafor</option>
+                    <option value="2" disabled>Semafor SBL</option>
+                    <option value="3" disabled>Powtarzacz</option>
+                    <option value="4" disabled>Tarcza ostrzegawcza</option>
+                </select>
+            </td>
+            <td>
+                <select class="form-select" aria-label="Odchył słupa" id="odchyl">
+                    <option disabled>Odchył słupa</option>
+                    <option value="1" selected>Prosto</option>
+                    <option value="2">W lewo</option>
+                    <option value="3">W prawo</option>
+                </select>
+            </td>
+            <td>
+                <select class="form-select" aria-label="Numer powtarzacza" id="num-powt" disabled>
+                    <option selected disabled>Numer powtarzacza</option>
+                    <option value="1">I SP</option>
+                    <option value="2">II SP</option>
+                    <option value="3">III SP</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-color: black; border-width: 0.1ch;">
+                <table>
+                    <tr>
+                        <td>
+                            <p>Komora 1:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="komora1">
+                                <option value="">Brak</option>
+                                <option value="light01" selected>Zielony</option>
+                                <option value="light03">Pomarańczowy - górny</option>
+                                <option value="light05">Czerwony</option>
+                                <option value="light04">Pomarańczowy - dolny</option>
+                                <option value="light07">Biały</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Komora 2:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="komora2">
+                                <option value="">Brak</option>
+                                <option value="light01">Zielony</option>
+                                <option value="light03" selected>Pomarańczowy - górny</option>
+                                <option value="light05">Czerwony</option>
+                                <option value="light04">Pomarańczowy - dolny</option>
+                                <option value="light07">Biały</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Komora 3:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="komora3">
+                                <option value="">Brak</option>
+                                <option value="light01">Zielony</option>
+                                <option value="light03">Pomarańczowy - górny</option>
+                                <option value="light05" selected>Czerwony</option>
+                                <option value="light04">Pomarańczowy - dolny</option>
+                                <option value="light07">Biały</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Komora 4:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="komora4">
+                                <option value="">Brak</option>
+                                <option value="light01">Zielony</option>
+                                <option value="light03">Pomarańczowy - górny</option>
+                                <option value="light05">Czerwony</option>
+                                <option value="light04" selected>Pomarańczowy - dolny</option>
+                                <option value="light07">Biały</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Komora 5:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="komora5">
+                                <option value="">Brak</option>
+                                <option value="light01">Zielony</option>
+                                <option value="light03">Pomarańczowy - górny</option>
+                                <option value="light05">Czerwony</option>
+                                <option value="light04">Pomarańczowy - dolny</option>
+                                <option value="light07" selected>Biały</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="border-color: black; border-width: 0.1ch;">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="greenStrip">
+                    <label class="form-check-label" for="greenStrip">Zielony pas</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="orangeStrip">
+                    <label class="form-check-label" for="orangeStrip">Pomarańczowy pas</label>
+                </div>
+            </td>
+            <td style="border-color: black; border-width: 0.1ch;">
+                <table>
+                    <tr>
+                        <td>
+                            <p>Pozycja 1:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="sign1">
+                                <option value="" selected>Brak</option>
+                                <option value="wsk_w1" disabled>W1</option>
+                                <option value="wsk_w18" disabled>W18</option>
+                                <option value="wsk_w19">W19</option>
+                                <option value="wsk_w20">W20</option>
+                                <option value="wsk_w21_5">W21-5</option>
+                                <option value="wsk_w21_8">W21-5</option>
+                                <option value="wsk_w21_led_1">W21-LED</option>
+                                <option value="wsk_w24">W24</option>
+                                <option value="wsk_w31">W31</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Pozycja 2:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="sign2">
+                                <option value="" selected>Brak</option>
+                                <option value="wsk_w1" disabled>W1</option>
+                                <option value="wsk_w18" disabled>W18</option>
+                                <option value="wsk_w19">W19</option>
+                                <option value="wsk_w20">W20</option>
+                                <option value="wsk_w21_5">W21-5</option>
+                                <option value="wsk_w21_8">W21-5</option>
+                                <option value="wsk_w21_led_1">W21-LED</option>
+                                <option value="wsk_w24">W24</option>
+                                <option value="wsk_w31">W31</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Pozycja 3:</p>
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm" id="sign3">
+                                <option value="" selected>Brak</option>
+                                <option value="wsk_w1" disabled>W1</option>
+                                <option value="wsk_w18" disabled>W18</option>
+                                <option value="wsk_w19">W19</option>
+                                <option value="wsk_w20">W20</option>
+                                <option value="wsk_w21_5">W21-5</option>
+                                <option value="wsk_w21_8">W21-5</option>
+                                <option value="wsk_w21_led_1">W21-LED</option>
+                                <option value="wsk_w24">W24</option>
+                                <option value="wsk_w31">W31</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <button class="button-submit" role="button" onclick="generate()">Generuj</button>
+    <br>
+    <br>
+    <h5 id="output"></h5>
+</div>
+<script>
+    function generate() {
+        var type = document.getElementById('typ').value
+        var lights = [document.getElementById('komora1').value, document.getElementById('komora2').value, document.getElementById('komora3').value, document.getElementById('komora4').value, document.getElementById('komora5').value]
+
+        var lightsQuantity = 0
+
+        for (let i = 1; i <= lights.length; i++) {
+            if (lights[i] != "") {
+                lightsQuantity++;
+            }
+        }
+
+        if (type == "1") {
+
+            var lightsQuantity2 = ~~lightsQuantity
+            if (lightsQuantity == 1 || lightsQuantity == 3) {
+                lightsQuantity2++
+            }
+
+            var strip = ""
+            if (document.getElementById('greenStrip').value || document.getElementById('orangeStrip').value) {
+                strip = "pas"
+            }
+
+            var greenStrip = ""
+            var orangeStrip = ""
+            if (document.getElementById('greenStrip').value) {
+                greenStrip = 'ligt10'
+            }
+            if (document.getElementById('orangeStrip').value) {
+                orangeStrip = 'ligt09'
+            }
+
+            var deviation = ~~document.getElementById('odchyl').value
+            if (deviation = 1) {
+                deviation = "slup-ps-y"
+                var secondComa = lightsQuantity.toString() + "k-b-yny"
+                var thirdComa = "drab-" + lightsQuantity2.toString() + "k-y"
+            }
+            if (deviation = 2) {
+                deviation = "slup-ps-p"
+                var secondComa = lightsQuantity.toString() + "k-ps-p"
+                var thirdComa = "drab-" + lightsQuantity2.toString() + "k-p"
+            }
+            if (deviation = 3) {
+                deviation = "slup-ps-yn"
+                var secondComa = lightsQuantity.toString() + "k-b-yny"
+                var thirdComa = "drab-" + lightsQuantity2.toString() + "k-yn"
+            }
+
+            var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, strip, "", document.getElementById('komora1').value, document.getElementById('komora2').value, document.getElementById('komora3').value, document.getElementById('komora4').value, document.getElementById('komora5').value, greenStrip, orangeStrip]
+
+            var input = outputMatrix.join(",")
+            
+            setClipboard(input)
+            document.getElementById('output').innerHTML = "Kod semafora został skopiowany do schowka!"
+        }
+    }
+
+    function type_change() {
+        var type = document.getElementById('typ').value
+        if (type == "3") {
+            document.getElementById('num-powt').disabled = false
+        }
+    }
+
+    function setClipboard(text) {
+    var type = "text/plain";
+    var blob = new Blob([text], { type });
+    var data = [new ClipboardItem({ [type]: blob })];
+
+    navigator.clipboard.write(data).then(
+        function () {
+        return '1';
+        },
+        function () {
+        return '0';
+        }
+    );
+}
+</script>
+<style>
+    .button-submit {
+        background-color: #c2fbd7;
+        border-radius: 100px;
+        box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+        color: green;
+        cursor: pointer;
+        display: inline-block;
+        font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+        padding: 7px 20px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 250ms;
+        border: 0;
+        font-size: 16px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .button-submit:hover {
+        box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+    }
+</style>
+{% endblock %}

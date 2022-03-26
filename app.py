@@ -16,6 +16,11 @@ def index():
 def krzywe_przejsciowe():
     return render_template('krzywe-przejsciowe.html')
 
+#Strona /wpisy-do-semaforow
+@app.route('/wpisy-do-semaforow', methods=['GET', 'POST'])
+def wpisy_do_semaforow():
+    return render_template('wpisy-do-semaforow.html')
+
 #Strona /dlugosc-luku-pionowego
 @app.route('/dlugosc-luku-pionowego', methods=['GET', 'POST'])
 def dlugosc_luku_pionowego():
