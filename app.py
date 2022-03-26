@@ -16,6 +16,11 @@ def index():
 def krzywe_przejsciowe():
     return render_template('krzywe-przejsciowe.html')
 
+#Strona /dlugosc-luku-pionowego
+@app.route('/dlugosc-luku-pionowego', methods=['GET', 'POST'])
+def dlugosc_luku_pionowego():
+    return render_template('dlugosc-luku-pionowego.html')
+
 @app.errorhandler(404)
 @app.errorhandler(500)
 def page_not_found(e):

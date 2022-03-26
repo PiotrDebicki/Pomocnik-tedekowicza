@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div>
+    <table style="margin-left: auto;margin-right: auto;">
+        <tr>
+            <th colspan="3">
+                <p>Długość łuku pionowego</p>
+            </th>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">R</span>
+                <input type="text" class="form-control" placeholder="Promień" aria-describedby="basic-addon2" id="input1" oninput="count()" style="width: 100px;">
+            </td>
+            <td>
+                <span style="color: white;">.....</span>
+            </td>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Długość łuku:</span>
+                <span class="input-group-text" id="output1">-----</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">i</span>
+                <input type="text" class="form-control" placeholder="&#916;i" aria-describedby="basic-addon2" id="input2" oninput="count()" style="width: 100px;">
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    function count(){
+        var r = ~~document.getElementById('input1').value
+        var i = parseFloat(document.getElementById('input2').value)
+
+        var pi = Math.PI
+
+        var value = pi * r * i * 0.057 / 180
+
+        document.getElementById('output1').innerHTML = value
+}
+</script>
+{% endblock %}
+
+
