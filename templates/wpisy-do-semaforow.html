@@ -13,9 +13,9 @@
                 <select class="form-select" aria-label="Typ semafora" id="typ" onchange="type_change()">
                     <option disabled>Typ semafora</option>
                     <option value="1" selected>Semafor</option>
-                    <option value="2" disabled>Semafor SBL</option>
-                    <option value="3" disabled>Powtarzacz</option>
-                    <option value="4" disabled>Tarcza ostrzegawcza</option>
+                    <option value="2">Semafor SBL</option>
+                    <option value="3">Powtarzacz</option>
+                    <option value="4">Tarcza ostrzegawcza</option>
                 </select>
             </td>
             <td>
@@ -256,9 +256,36 @@
 
     function type_change() {
         var type = document.getElementById('typ').value
+
+        if (type == "1") {
+            document.getElementById('num-powt').disabled = true
+            document.getElementById('greenStrip').disabled = false
+            document.getElementById('orangeStrip').disabled = false
+
+            document.getElementById('output').innerHTML = ""
+        }
+        if (type == "2") {
+            document.getElementById('num-powt').disabled = true
+            document.getElementById('greenStrip').disabled = true
+            document.getElementById('orangeStrip').disabled = true
+
+            document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+        }
         if (type == "3") {
             document.getElementById('num-powt').disabled = false
+            document.getElementById('greenStrip').disabled = true
+            document.getElementById('orangeStrip').disabled = true
+
+            document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
         }
+        if (type == "4") {
+            document.getElementById('num-powt').disabled = true
+            document.getElementById('greenStrip').disabled = true
+            document.getElementById('orangeStrip').disabled = true
+
+            document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+        }
+
     }
 
     function setClipboard(text) {
