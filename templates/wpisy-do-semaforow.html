@@ -171,85 +171,84 @@
             }
         }
 
-        if (type == "1") {
+        switch (parseInt(type)) {
+            case 1:
 
-            var lightsQuantity2 = ~~lightsQuantity
-            if (lightsQuantity == 1 || lightsQuantity == 3) {
-                lightsQuantity2++
-            }
+                var lightsQuantity2 = ~~lightsQuantity
+                if (lightsQuantity == 1 || lightsQuantity == 3) {
+                    lightsQuantity2++
+                }
 
-            var strip = ""
-            if (document.getElementById('greenStrip').value || document.getElementById('orangeStrip').value) {
-                strip = "pas"
-            }
+                var strip = ""
+                if (document.getElementById('greenStrip').value || document.getElementById('orangeStrip').value) {
+                    strip = "pas"
+                }
 
-            var greenStrip = ""
-            var orangeStrip = ""
-            if (document.getElementById('greenStrip').value) {
-                greenStrip = 'ligt10'
-            }
-            if (document.getElementById('orangeStrip').value) {
-                orangeStrip = 'ligt09'
-            }
+                var greenStrip = ""
+                var orangeStrip = ""
+                if (document.getElementById('greenStrip').value) {
+                    greenStrip = 'ligt10'
+                }
+                if (document.getElementById('orangeStrip').value) {
+                    orangeStrip = 'ligt09'
+                }
 
-            var deviation = ~~document.getElementById('odchyl').value
-            if (deviation = 1) {
-                deviation = "slup-ps-y"
-                var secondComa = lightsQuantity.toString() + "k-b-yny"
-                var thirdComa = "drab-" + lightsQuantity2.toString() + "k-y"
-            }
-            if (deviation = 2) {
-                deviation = "slup-ps-p"
-                var secondComa = lightsQuantity.toString() + "k-ps-p"
-                var thirdComa = "drab-" + lightsQuantity2.toString() + "k-p"
-            }
-            if (deviation = 3) {
-                deviation = "slup-ps-yn"
-                var secondComa = lightsQuantity.toString() + "k-b-yny"
-                var thirdComa = "drab-" + lightsQuantity2.toString() + "k-yn"
-            }
+                var deviation = ~~document.getElementById('odchyl').value
+                if (deviation = 1) {
+                    deviation = "slup-ps-y"
+                    var secondComa = lightsQuantity.toString() + "k-b-yny"
+                    var thirdComa = "drab-" + lightsQuantity2.toString() + "k-y"
+                }
+                if (deviation = 2) {
+                    deviation = "slup-ps-p"
+                    var secondComa = lightsQuantity.toString() + "k-ps-p"
+                    var thirdComa = "drab-" + lightsQuantity2.toString() + "k-p"
+                }
+                if (deviation = 3) {
+                    deviation = "slup-ps-yn"
+                    var secondComa = lightsQuantity.toString() + "k-b-yny"
+                    var thirdComa = "drab-" + lightsQuantity2.toString() + "k-yn"
+                }
 
-            var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, strip, "", document.getElementById('komora1').value, document.getElementById('komora2').value, document.getElementById('komora3').value, document.getElementById('komora4').value, document.getElementById('komora5').value, greenStrip, orangeStrip]
+                var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, strip, "", document.getElementById('komora1').value, document.getElementById('komora2').value, document.getElementById('komora3').value, document.getElementById('komora4').value, document.getElementById('komora5').value, greenStrip, orangeStrip]
 
-            var input = outputMatrix.join(",")
+                var input = outputMatrix.join(",")
 
-            setClipboard(input)
-            document.getElementById('output').innerHTML = "Kod semafora został skopiowany do schowka!"
+                setClipboard(input)
+                document.getElementById('output').innerHTML = "Kod semafora został skopiowany do schowka!"
+
+            case 2:
+                document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+            case 3:
+                document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+            case 4:
+                document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
         }
     }
 
     function type_change() {
-        var type = document.getElementById('typ').value
+        var type = ~~document.getElementById('typ').value
 
-        if (type == "1") {
-            document.getElementById('num-powt').disabled = true
-            document.getElementById('greenStrip').disabled = false
-            document.getElementById('orangeStrip').disabled = false
+        switch (type) {
+            case 1:
+                document.getElementById('num-powt').disabled = true
+                document.getElementById('greenStrip').disabled = false
+                document.getElementById('orangeStrip').disabled = false
 
-            document.getElementById('output').innerHTML = ""
+                document.getElementById('output').innerHTML = ""
+            case 2:
+                document.getElementById('num-powt').disabled = true
+                document.getElementById('greenStrip').disabled = true
+                document.getElementById('orangeStrip').disabled = true
+            case 3:
+                document.getElementById('num-powt').disabled = false
+                document.getElementById('greenStrip').disabled = true
+                document.getElementById('orangeStrip').disabled = true
+            case 4:
+                document.getElementById('num-powt').disabled = true
+                document.getElementById('greenStrip').disabled = true
+                document.getElementById('orangeStrip').disabled = true
         }
-        if (type == "2") {
-            document.getElementById('num-powt').disabled = true
-            document.getElementById('greenStrip').disabled = true
-            document.getElementById('orangeStrip').disabled = true
-
-            document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
-        }
-        if (type == "3") {
-            document.getElementById('num-powt').disabled = false
-            document.getElementById('greenStrip').disabled = true
-            document.getElementById('orangeStrip').disabled = true
-
-            document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
-        }
-        if (type == "4") {
-            document.getElementById('num-powt').disabled = true
-            document.getElementById('greenStrip').disabled = true
-            document.getElementById('orangeStrip').disabled = true
-
-            document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
-        }
-
     }
 
     function setClipboard(text) {
