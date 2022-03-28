@@ -248,7 +248,7 @@
             var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, strip, "", document.getElementById('komora1').value, document.getElementById('komora2').value, document.getElementById('komora3').value, document.getElementById('komora4').value, document.getElementById('komora5').value, greenStrip, orangeStrip]
 
             var input = outputMatrix.join(",")
-            
+
             setClipboard(input)
             document.getElementById('output').innerHTML = "Kod semafora został skopiowany do schowka!"
         }
@@ -289,19 +289,19 @@
     }
 
     function setClipboard(text) {
-    var type = "text/plain";
-    var blob = new Blob([text], { type });
-    var data = [new ClipboardItem({ [type]: blob })];
+        var type = "text/plain";
+        var blob = new Blob([text], { type });
+        var data = [new ClipboardItem({ [type]: blob })];
 
-    navigator.clipboard.write(data).then(
-        function () {
-        return '1';
-        },
-        function () {
-        return '0';
-        }
-    );
-}
+        navigator.clipboard.write(data).then(
+            function () {
+                return '1';
+            },
+            function () {
+                return '0';
+            }
+        );
+    }
 </script>
 <style>
     .button-submit {
