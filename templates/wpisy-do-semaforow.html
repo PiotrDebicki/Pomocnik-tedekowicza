@@ -160,7 +160,7 @@
 </div>
 <script>
     function generate() {
-        var type = document.getElementById('typ').value
+        var type = ~~document.getElementById('typ').value
         var lights = [document.getElementById('komora1').value, document.getElementById('komora2').value, document.getElementById('komora3').value, document.getElementById('komora4').value, document.getElementById('komora5').value]
 
         var lightsQuantity = 0
@@ -171,7 +171,7 @@
             }
         }
 
-        switch (parseInt(type)) {
+        switch (type) {
             case 1:
 
                 var lightsQuantity2 = ~~lightsQuantity
