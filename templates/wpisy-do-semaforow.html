@@ -173,6 +173,7 @@
 
         switch (type) {
             case 1:
+                //Normalny Semafor
 
                 var lightsQuantity2 = ~~lightsQuantity
                 if (lightsQuantity == 1 || lightsQuantity == 3) {
@@ -218,10 +219,13 @@
                 document.getElementById('output').innerHTML = "Kod semafora został skopiowany do schowka!"
 
             case 2:
+                //Semafor SBL
                 document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
             case 3:
+                //Powtarzacz
                 document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
             case 4:
+                //Tarcza ostrzegawcza
                 document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
         }
     }
@@ -231,18 +235,22 @@
 
         switch (type) {
             case 1:
+                //Normalny Semafor
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = false
                 document.getElementById('orangeStrip').disabled = false
             case 2:
+                //Semafor SBL
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
             case 3:
+                //Powtarzacz
                 document.getElementById('num-powt').disabled = false
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
             case 4:
+                //Tarcza ostrzegawcza
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
