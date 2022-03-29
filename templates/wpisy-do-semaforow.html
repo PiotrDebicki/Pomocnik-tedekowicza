@@ -193,21 +193,23 @@
                     orangeStrip = 'light09'
                 }
 
-                var deviation = ~~document.getElementById('odchyl').value
-                if (deviation = 1) {
-                    deviation = "slup-ps-y"
-                    var secondComa = lightsQuantity.toString() + "k-b-yny"
-                    var thirdComa = "drab-" + lightsQuantity2.toString() + "k-y"
-                }
-                if (deviation = 2) {
-                    deviation = "slup-ps-p"
-                    var secondComa = lightsQuantity.toString() + "k-ps-p"
-                    var thirdComa = "drab-" + lightsQuantity2.toString() + "k-p"
-                }
-                if (deviation = 3) {
-                    deviation = "slup-ps-yn"
-                    var secondComa = lightsQuantity.toString() + "k-b-yny"
-                    var thirdComa = "drab-" + lightsQuantity2.toString() + "k-yn"
+
+                switch (~~document.getElementById('odchyl').value) {
+                    case 1:
+                        deviation = "slup-ps-y"
+                        var secondComa = lightsQuantity.toString() + "k-b-yny"
+                        var thirdComa = "drab-" + lightsQuantity2.toString() + "k-y"
+                        break;
+                    case 2:
+                        deviation = "slup-ps-p"
+                        var secondComa = lightsQuantity.toString() + "k-ps-p"
+                        var thirdComa = "drab-" + lightsQuantity2.toString() + "k-p"
+                        break;
+                    case 3:
+                        deviation = "slup-ps-yn"
+                        var secondComa = lightsQuantity.toString() + "k-b-yny"
+                        var thirdComa = "drab-" + lightsQuantity2.toString() + "k-yn"
+                        break;
                 }
 
                 var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, strip, "", document.getElementById('komora5').value, document.getElementById('komora4').value, document.getElementById('komora3').value, document.getElementById('komora2').value, document.getElementById('komora1').value, greenStrip, orangeStrip]
