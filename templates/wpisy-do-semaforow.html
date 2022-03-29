@@ -239,6 +239,13 @@
         switch (parseInt(document.getElementById('typ').value)) {
             case 1:
                 //Normalny Semafor
+
+                document.getElementById('komora1').value = 'light01'
+                document.getElementById('komora2').value = 'light03'
+                document.getElementById('komora3').value = 'light05'
+                document.getElementById('komora4').value = 'light04'
+                document.getElementById('komora5').value = 'light07'
+
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = false
                 document.getElementById('orangeStrip').disabled = false
@@ -246,18 +253,39 @@
                 break;
             case 2:
                 //Semafor SBL
+                
+                document.getElementById('komora1').value = ''
+                document.getElementById('komora2').value = ''
+                document.getElementById('komora3').value = 'light01'
+                document.getElementById('komora4').value = 'light05'
+                document.getElementById('komora5').value = 'light03'
+
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
                 break;
             case 3:
                 //Powtarzacz
+
+                document.getElementById('komora1').value = ''
+                document.getElementById('komora2').value = ''
+                document.getElementById('komora3').value = 'light03'
+                document.getElementById('komora4').value = 'light01'
+                document.getElementById('komora5').value = 'light07'
+
                 document.getElementById('num-powt').disabled = false
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
                 break;
             case 4:
                 //Tarcza ostrzegawcza
+
+                document.getElementById('komora1').value = ''
+                document.getElementById('komora2').value = ''
+                document.getElementById('komora3').value = ''
+                document.getElementById('komora4').value = 'light01'
+                document.getElementById('komora5').value = 'light03'
+
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
