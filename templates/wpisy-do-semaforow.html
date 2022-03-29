@@ -218,42 +218,50 @@
                 setClipboard(input)
                 document.getElementById('output').innerHTML = "Kod semafora został skopiowany do schowka!"
 
+                break;
             case 2:
                 //Semafor SBL
                 document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+                break;
             case 3:
                 //Powtarzacz
                 document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+                break;
             case 4:
                 //Tarcza ostrzegawcza
                 document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+                break;
         }
     }
 
     function type_change() {
-        var type = ~~document.getElementById('typ').value
 
-        switch (type) {
+        switch (parseInt(document.getElementById('typ').value)) {
             case 1:
                 //Normalny Semafor
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = false
                 document.getElementById('orangeStrip').disabled = false
+
+                break;
             case 2:
                 //Semafor SBL
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
+                break;
             case 3:
                 //Powtarzacz
                 document.getElementById('num-powt').disabled = false
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
+                break;
             case 4:
                 //Tarcza ostrzegawcza
                 document.getElementById('num-powt').disabled = true
                 document.getElementById('greenStrip').disabled = true
                 document.getElementById('orangeStrip').disabled = true
+                break;
         }
     }
 
