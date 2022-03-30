@@ -1,160 +1,225 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
 
-{% block page_content %}
-<div>
-    <table style="margin-left: auto;margin-right: auto;">
-        <tr>
-            <th colspan="3">
-                <p>Generator wpisów do semaforów</p>
-            </th>
-        </tr>
-        <tr style="border-color: black; border-width: 0.1ch;">
-            <td>
-                <select class="form-select" aria-label="Typ semafora" id="typ" onchange="type_change()">
-                    <option disabled>Typ semafora</option>
-                    <option value="1" selected>Semafor</option>
-                    <option value="2">Semafor SBL</option>
-                    <option value="3">Powtarzacz</option>
-                    <option value="4">Tarcza ostrzegawcza</option>
-                </select>
-            </td>
-            <td>
-                <select class="form-select" aria-label="Odchył słupa" id="odchyl">
-                    <option disabled>Odchył słupa</option>
-                    <option value="1" selected>Prosto</option>
-                    <option value="2">W lewo</option>
-                    <option value="3">W prawo</option>
-                </select>
-            </td>
-            <td>
-                <select class="form-select" aria-label="Numer powtarzacza" id="num-powt" disabled>
-                    <option selected disabled>Numer powtarzacza</option>
-                    <option value="1">I SP</option>
-                    <option value="2">II SP</option>
-                    <option value="3">III SP</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td style="border-color: black; border-width: 0.1ch;">
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Komora 1</label>
-                    <select class="form-select form-select-sm" id="komora1">
-                        <option style="background-color: lightgray;" value="">Brak</option>
-                        <option style="background-color: lightgreen;" value="light01" selected>Zielony</option>
-                        <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
-                        <option style="background-color: red;" value="light05">Czerwony</option>
-                        <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
-                        <option value="light07">Biały</option>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pomocnik tedekowicza</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"
+        style="background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Pomocnik Tedekowicza</a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/wpisy-do-semaforow">Semafory</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Kalkulatory
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/krzywe-przejsciowe">Krzywe przejściowe</a></li>
+                            <li><a class="dropdown-item" href="/dlugosc-luku-pionowego">Długość łuku pionowego</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Tablice
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="page-content">
+        <table style="margin-left: auto;margin-right: auto;">
+            <tr>
+                <th colspan="3">
+                    <p>Generator wpisów do semaforów</p>
+                </th>
+            </tr>
+            <tr style="border-color: black; border-width: 0.1ch;">
+                <td>
+                    <select class="form-select" aria-label="Typ semafora" id="typ" onchange="type_change()">
+                        <option disabled>Typ semafora</option>
+                        <option value="1" selected>Semafor</option>
+                        <option value="2">Semafor SBL</option>
+                        <option value="3">Powtarzacz</option>
+                        <option value="4">Tarcza ostrzegawcza</option>
                     </select>
-                </div>
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Komora 2</label>
-                    <select class="form-select form-select-sm" id="komora2">
-                        <option style="background-color: lightgray;" value="">Brak</option>
-                        <option style="background-color: lightgreen;" value="light01">Zielony</option>
-                        <option style="background-color: orange;" value="light03" selected>Pomarańczowy - górny</option>
-                        <option style="background-color: red;" value="light05">Czerwony</option>
-                        <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
-                        <option value="light07">Biały</option>
+                </td>
+                <td>
+                    <select class="form-select" aria-label="Odchył słupa" id="odchyl">
+                        <option disabled>Odchył słupa</option>
+                        <option value="1" selected>Prosto</option>
+                        <option value="2">W lewo</option>
+                        <option value="3">W prawo</option>
                     </select>
-                </div>
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Komora 3</label>
-                    <select class="form-select form-select-sm" id="komora3">
-                        <option style="background-color: lightgray;" value="">Brak</option>
-                        <option style="background-color: lightgreen;" value="light01">Zielony</option>
-                        <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
-                        <option style="background-color: red;" value="light05" selected>Czerwony</option>
-                        <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
-                        <option value="light07">Biały</option>
+                </td>
+                <td>
+                    <select class="form-select" aria-label="Numer powtarzacza" id="num-powt" disabled>
+                        <option selected disabled>Numer powtarzacza</option>
+                        <option value="1">I SP</option>
+                        <option value="2">II SP</option>
+                        <option value="3">III SP</option>
                     </select>
-                </div>
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Komora 4</label>
-                    <select class="form-select form-select-sm" id="komora4">
-                        <option style="background-color: lightgray;" value="">Brak</option>
-                        <option style="background-color: lightgreen;" value="light01">Zielony</option>
-                        <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
-                        <option style="background-color: red;" value="light05">Czerwony</option>
-                        <option style="background-color: orange;" value="light04" selected>Pomarańczowy - dolny</option>
-                        <option value="light07">Biały</option>
-                    </select>
-                </div>
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Komora 5</label>
-                    <select class="form-select form-select-sm" id="komora5">
-                        <option style="background-color: lightgray;" value="">Brak</option>
-                        <option style="background-color: lightgreen;" value="light01">Zielony</option>
-                        <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
-                        <option style="background-color: red;" value="light05">Czerwony</option>
-                        <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
-                        <option value="light07" selected>Biały</option>
-                    </select>
-                </div>
-            </td>
-            <td style="border-color: black; border-width: 0.1ch;">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="greenStrip">
-                    <label class="form-check-label" for="greenStrip">Zielony pas</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="orangeStrip">
-                    <label class="form-check-label" for="orangeStrip">Pomarańczowy pas</label>
-                </div>
-            </td>
-            <td style="border-color: black; border-width: 0.1ch;">
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Pozycja 1</label>
-                    <select class="form-select form-select-sm" id="sign1">
-                        <option value="" selected>Brak</option>
-                        <option value="wsk_w1" disabled>W1</option>
-                        <option value="wsk_w18" disabled>W18</option>
-                        <option value="wsk_w19">W19</option>
-                        <option value="wsk_w20">W20</option>
-                        <option value="wsk_w21_5">W21-5</option>
-                        <option value="wsk_w21_8">W21-8</option>
-                        <option value="wsk_w21_led_1">W21-LED</option>
-                        <option value="wsk_w24">W24</option>
-                    </select>
-                </div>
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Pozycja 2</label>
-                    <select class="form-select form-select-sm" id="sign2">
-                        <option value="" selected>Brak</option>
-                        <option value="wsk_w1" disabled>W1</option>
-                        <option value="wsk_w18" disabled>W18</option>
-                        <option value="wsk_w19">W19</option>
-                        <option value="wsk_w20">W20</option>
-                        <option value="wsk_w21_5">W21-5</option>
-                        <option value="wsk_w21_8">W21-8</option>
-                        <option value="wsk_w21_led_1">W21-LED</option>
-                        <option value="wsk_w24">W24</option>
-                    </select>
-                </div>
-                <div class="input-group mb-1">
-                    <label class="input-group-text" for="inputGroupSelect01">Pozycja 3</label>
-                    <select class="form-select form-select-sm" id="sign3">
-                        <option value="" selected>Brak</option>
-                        <option value="wsk_w1" disabled>W1</option>
-                        <option value="wsk_w18" disabled>W18</option>
-                        <option value="wsk_w19">W19</option>
-                        <option value="wsk_w20">W20</option>
-                        <option value="wsk_w21_5">W21-5</option>
-                        <option value="wsk_w21_8">W21-8</option>
-                        <option value="wsk_w21_led_1">W21-LED</option>
-                        <option value="wsk_w24">W24</option>
-                    </select>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <br>
-    <button class="button-submit" role="button" onclick="generate()">Generuj</button>
-    <br>
-    <br>
-    <h5 id="output"></h5>
-</div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-color: black; border-width: 0.1ch;">
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Komora 1</label>
+                        <select class="form-select form-select-sm" id="komora1">
+                            <option style="background-color: lightgray;" value="">Brak</option>
+                            <option style="background-color: lightgreen;" value="light01" selected>Zielony</option>
+                            <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
+                            <option style="background-color: red;" value="light05">Czerwony</option>
+                            <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
+                            <option value="light07">Biały</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Komora 2</label>
+                        <select class="form-select form-select-sm" id="komora2">
+                            <option style="background-color: lightgray;" value="">Brak</option>
+                            <option style="background-color: lightgreen;" value="light01">Zielony</option>
+                            <option style="background-color: orange;" value="light03" selected>Pomarańczowy - górny</option>
+                            <option style="background-color: red;" value="light05">Czerwony</option>
+                            <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
+                            <option value="light07">Biały</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Komora 3</label>
+                        <select class="form-select form-select-sm" id="komora3">
+                            <option style="background-color: lightgray;" value="">Brak</option>
+                            <option style="background-color: lightgreen;" value="light01">Zielony</option>
+                            <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
+                            <option style="background-color: red;" value="light05" selected>Czerwony</option>
+                            <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
+                            <option value="light07">Biały</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Komora 4</label>
+                        <select class="form-select form-select-sm" id="komora4">
+                            <option style="background-color: lightgray;" value="">Brak</option>
+                            <option style="background-color: lightgreen;" value="light01">Zielony</option>
+                            <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
+                            <option style="background-color: red;" value="light05">Czerwony</option>
+                            <option style="background-color: orange;" value="light04" selected>Pomarańczowy - dolny</option>
+                            <option value="light07">Biały</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Komora 5</label>
+                        <select class="form-select form-select-sm" id="komora5">
+                            <option style="background-color: lightgray;" value="">Brak</option>
+                            <option style="background-color: lightgreen;" value="light01">Zielony</option>
+                            <option style="background-color: orange;" value="light03">Pomarańczowy - górny</option>
+                            <option style="background-color: red;" value="light05">Czerwony</option>
+                            <option style="background-color: orange;" value="light04">Pomarańczowy - dolny</option>
+                            <option value="light07" selected>Biały</option>
+                        </select>
+                    </div>
+                </td>
+                <td style="border-color: black; border-width: 0.1ch;">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="greenStrip">
+                        <label class="form-check-label" for="greenStrip">Zielony pas</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="orangeStrip">
+                        <label class="form-check-label" for="orangeStrip">Pomarańczowy pas</label>
+                    </div>
+                </td>
+                <td style="border-color: black; border-width: 0.1ch;">
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Pozycja 1</label>
+                        <select class="form-select form-select-sm" id="sign1">
+                            <option value="" selected>Brak</option>
+                            <option value="wsk_w1" disabled>W1</option>
+                            <option value="wsk_w18" disabled>W18</option>
+                            <option value="wsk_w19">W19</option>
+                            <option value="wsk_w20">W20</option>
+                            <option value="wsk_w21_5">W21-5</option>
+                            <option value="wsk_w21_8">W21-8</option>
+                            <option value="wsk_w21_led_1">W21-LED</option>
+                            <option value="wsk_w24">W24</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Pozycja 2</label>
+                        <select class="form-select form-select-sm" id="sign2">
+                            <option value="" selected>Brak</option>
+                            <option value="wsk_w1" disabled>W1</option>
+                            <option value="wsk_w18" disabled>W18</option>
+                            <option value="wsk_w19">W19</option>
+                            <option value="wsk_w20">W20</option>
+                            <option value="wsk_w21_5">W21-5</option>
+                            <option value="wsk_w21_8">W21-8</option>
+                            <option value="wsk_w21_led_1">W21-LED</option>
+                            <option value="wsk_w24">W24</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-1">
+                        <label class="input-group-text" for="inputGroupSelect01">Pozycja 3</label>
+                        <select class="form-select form-select-sm" id="sign3">
+                            <option value="" selected>Brak</option>
+                            <option value="wsk_w1" disabled>W1</option>
+                            <option value="wsk_w18" disabled>W18</option>
+                            <option value="wsk_w19">W19</option>
+                            <option value="wsk_w20">W20</option>
+                            <option value="wsk_w21_5">W21-5</option>
+                            <option value="wsk_w21_8">W21-8</option>
+                            <option value="wsk_w21_led_1">W21-LED</option>
+                            <option value="wsk_w24">W24</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button class="button-submit" role="button" onclick="generate()">Generuj</button>
+        <br>
+        <br>
+        <h5 id="output"></h5>
+    </div>
+    <footer>
+        <h4>©<a href="https://td2.info.pl/profile/?u=16691">PDębicki</a> 2022</h4>
+    </footer>
+</body>
+<style>
+    .page-content {
+        text-align: center;
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    }
+    footer a{
+        text-decoration: none;
+        color: black;
+    }
+</style>
 <script>
     function generate() {
         var lights = [document.getElementById('komora1').value, document.getElementById('komora2').value, document.getElementById('komora3').value, document.getElementById('komora4').value, document.getElementById('komora5').value]
@@ -413,4 +478,5 @@
     background-color: lightgrey;
     }
 </style>
-{% endblock %}
+
+</html>
