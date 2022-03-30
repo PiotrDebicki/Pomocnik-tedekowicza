@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div>
+    <table style="margin-left: auto;margin-right: auto;">
+        <tr>
+            <th colspan="3">
+                <p>Minimalna długość krzywej przejściowej</p>
+            </th>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">R</span>
+                <input type="text" class="form-control" placeholder="Promień" aria-describedby="basic-addon1" id="input1" oninput="count_minimal()">
+            </td>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">vmax</span>
+                <input type="text" class="form-control" placeholder="Maksymalna prędkość" aria-describedby="basic-addon2" id="input2" oninput="count_minimal()">
+            </td>
+            <td>
+                <span style="color: white;">.....</span>
+            </td>
+            
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Minimalna długość:</span>
+                <span class="input-group-text" id="output1">-----</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon4">h</span>
+                <input type="text" class="form-control" placeholder="Wysokość przechyłki" aria-describedby="basic-addon4"id="input3" oninput="count_minimal()">
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table style="margin-left: auto;margin-right: auto;">
+        <tr>
+            <th colspan="3">
+                <p>Przesunięcie na krzywej przejćciowej</p>
+            </th>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">R</span>
+                <input type="text" class="form-control" placeholder="Promień" aria-describedby="basic-addon1" id="input11" oninput="count_curve()">
+            </td>
+            <td>
+                <span style="color: white;">.....</span>
+            </td>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">L/2:</span>
+                <span class="input-group-text" id="output11">-----</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">L</span>
+                <input type="text" class="form-control" placeholder="Długośc" aria-describedby="basic-addon2" id="input12" oninput="count_curve()">
+            </td>
+            <td>
+                <span style="color: white;">.....</span>
+            </td>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">P (3 st.):</span>
+                <span class="input-group-text" id="output12">-----</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <span style="color: white;"></span>
+            </td>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">P (4 st.):</span>
+                <span class="input-group-text" id="output13">-----</span>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    function count_minimal(){
+        var r = ~~document.getElementById("input1").value
+        var vmax = ~~document.getElementById("input2").value
+        var h = ~~document.getElementById("input3").value
+
+        var qn = 1
+        var qr = 0.48
+        var dh_ds_dop = 1.6
+        var dh_dt_dop = 35
+        var dl = 0
+        if (vmax<=70){
+            dl = 50
+        }
+        var dl_dt_dop = 55
+
+        var p1 = qn * h / dh_ds_dop
+        var p2 = qn * (vmax/3.6) * h / dh_dt_dop
+        var p3 = qn * (vmax/3.6) * dl / dl_dt_dop
+        var p4 = Math.sqrt(r*qr)
+        var p5 = 30
+
+
+        document.getElementById("output1").innerHTML = Math.round(Math.max(p1, p2, p3, p4, p5))
+    }
+    function count_curve(){
+        var R = ~~document.getElementById("input11").value
+        var L = ~~document.getElementById("input12").value
+
+        var ksi = Math.asin(L/(2*R))
+        var kappa = 1/Math.cos(ksi)
+        var rzedna4stopnia = kappa * 7 * L * L / (48 * R)
+
+        document.getElementById("output11").innerHTML = L/2
+        document.getElementById("output12").innerHTML = Math.round((kappa * L * L / (6 * R) - R * (1 - Math.cos(ksi)))*100)/100
+        document.getElementById("output13").innerHTML = Math.round(((rzedna4stopnia - R*(1 - Math.cos(ksi))) / Math.cos(ksi))*100)/100
+    }
+</script>
+{% endblock %}

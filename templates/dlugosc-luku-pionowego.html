@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div>
+    <table style="margin-left: auto;margin-right: auto;">
+        <tr>
+            <th colspan="3">
+                <p>Długość łuku pionowego</p>
+            </th>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">R</span>
+                <select class="form-select" aria-label="Promień" id="input1">
+                    <option disabled>Rodzaj układu</option>
+                    <option value="20000" selected>tory nowobudowane z v > 160 km/h</option>
+                    <option value="15000">tory nowobudowane z 140 < v ≤ 160 km/h</option>
+                    <option value="15000">tory modernizowane z v > 160 km/h</option>
+                    <option value="10000">tory gł. zas. linii kat. 0 i 1</option>
+                    <option value="5000">tory gł. zas. linii kat. 2</option>
+                    <option value="5000">tory gł. dod. linii kat. 0 i 1</option>
+                    <option value="2500">tory gł. dod. linii kat. 2</option>
+                    <option value="2000">tory linii kat. 3 oraz tory boczne</option>
+                    <option value="500">tory boczne w trudnych war. terenowych</option>
+                </select>
+            </td>
+            <td>
+                <span style="color: white;">.....</span>
+            </td>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Długość łuku:</span>
+                <span class="input-group-text" id="output1">-----</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Różnica pochyleń w &#8240;</span>
+                <input type="text" class="form-control" placeholder="&#916;i" aria-describedby="basic-addon2" id="input2" oninput="count()" style="width: 100px;">
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    function count(){
+        var r = ~~document.getElementById('input1').value
+        var i = parseFloat(document.getElementById('input2').value)
+
+        var pi = Math.PI
+
+        var value = pi * r * i * 0.057 / 180
+
+        document.getElementById('output1').innerHTML = Math.round(value)
+}
+</script>
+{% endblock %}
+
+
