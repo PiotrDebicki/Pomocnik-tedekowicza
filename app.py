@@ -25,6 +25,12 @@ def wpisy_do_semaforow():
 @app.route('/dlugosc-luku-pionowego', methods=['GET', 'POST'])
 def dlugosc_luku_pionowego():
     return render_template('dlugosc-luku-pionowego.html')
+    
+#Strona /tab/<id>
+@app.route('/tab/<id>', methods=['GET', 'POST'])
+def tab(id):
+    return render_template('tab.html', id=id)
+
 
 @app.errorhandler(404)
 @app.errorhandler(500)
