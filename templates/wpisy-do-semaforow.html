@@ -181,13 +181,17 @@
                     strip = "pas"
                 }
 
-                var greenStrip = ""
-                var orangeStrip = ""
+                var strip1 = ""
+                var strip2 = ""
                 if (document.getElementById('greenStrip').value) {
-                    greenStrip = 'light10'
-                }
-                if (document.getElementById('orangeStrip').value) {
-                    orangeStrip = 'light09'
+                    strip1 = 'light10'
+                    if (document.getElementById('orangeStrip').value) {
+                        strip2 = 'light09'
+                    }
+                }else{
+                    if (document.getElementById('orangeStrip').value) {
+                        strip1 = 'light09'
+                    }
                 }
 
 
@@ -209,7 +213,7 @@
                         break;
                 }
 
-                var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, strip, "", document.getElementById('komora5').value, document.getElementById('komora4').value, document.getElementById('komora3').value, document.getElementById('komora2').value, document.getElementById('komora1').value, greenStrip, orangeStrip]
+                var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, strip, "", document.getElementById('komora5').value, document.getElementById('komora4').value, document.getElementById('komora3').value, document.getElementById('komora2').value, document.getElementById('komora1').value, strip1, strip2]
 
                 var input = outputMatrix.join(",")
 
