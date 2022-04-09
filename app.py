@@ -31,6 +31,11 @@ def dlugosc_luku_pionowego():
 def tab(id):
     return render_template('tab.html', id=id)
 
+#Strona /numer
+@app.route('/numer', methods=['GET', 'POST'])
+def numer():
+    return render_template('numer.html')
+
 
 @app.errorhandler(404)
 @app.errorhandler(500)

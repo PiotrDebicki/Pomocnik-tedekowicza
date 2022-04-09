@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div>
+    <br>
+    <br>
+    <table style="margin-left: auto;margin-right: auto;">
+        <tr style="text-align: center;">
+            <td class="input-group mb-1" style="text-align: center;">
+                <label class="input-group-text" for="inputGroupSelect01" style="width:95px;">Kategoria</label>
+                <select class="form-select form-select-sm" id="category" onclick="generate()" style="width:200px;">
+                    <option selected="" value="1">Ekspres</option>
+                    <option value="2">Pośpieszny</option>
+                    <option value="3">Osobowy przyśpieszony</option>
+                    <option value="4">Osobowy</option>
+                    <option value="5">Towarowy</option>
+                    <option value="6">Zdawczy</option>
+                    <option value="7">Luz</option>
+                    <option value="8">Służbowy</option>
+                </select>
+            </td>
+            <td class="input-group mb-3" style="text-align: center;">
+                <span class="input-group-text" id="basic-addon1" style="width:95px;">Numer</span>
+                <span class="input-group-text" id="number" style="width:200px;">00000</span>
+            </td>
+        </tr>
+    </table>
+    <button class="button-submit" role="button" onclick="generate()">Generuj</button>
+</div>
+<script>
+    function generate(){
+        var category = ~~document.getElementById('category').value
+        var number = 0
+
+        switch(category){
+            case 1://WSZYSTKO ZMIENIĆ TAK JAK SĄ TOWATY
+                number = Math.floor(Math.random() * (9900 - 1000)) + 1000;
+                break;
+            case 2:
+                number = Math.floor(Math.random() * (99170 - 10050)) + 10001;
+                break;
+            case 3:
+                number = Math.floor(Math.random() * (99200 - 10170)) + 10170;
+                break;
+            case 4:
+                number = Math.floor(Math.random() * (100000 - 10200)) + 10200;
+                break;
+            case 5:
+                number = (Math.floor(Math.random() * (100 - 10)) + 10)*10000 + 4000 + (Math.floor(Math.random() * (900 - 100)) + 100)
+                break;
+            case 6:
+                number = (Math.floor(Math.random() * (100 - 10)) + 10)*10000 + 3000 + (Math.floor(Math.random() * (900 - 100)) + 100)
+                break;
+            case 7:
+                number = (Math.floor(Math.random() * (100 - 10)) + 10)*10000 + 5000 + (Math.floor(Math.random() * (900 - 100)) + 100)
+                break;
+            case 8:
+                number = (Math.floor(Math.random() * (100 - 10)) + 10)*10000 + 6000 + (Math.floor(Math.random() * (900 - 100)) + 100)
+                break;
+        }
+        document.getElementById('number').innerHTML = number
+    }
+    generate()
+</script>
+<style>
+    .button-submit {
+        background-color: #c2fbd7;
+        border-radius: 100px;
+        box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+        color: green;
+        cursor: pointer;
+        display: inline-block;
+        font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+        padding: 7px 20px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 250ms;
+        border: 0;
+        font-size: 16px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .button-submit:hover {
+        box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+    }
+</style>
+{% endblock %}
