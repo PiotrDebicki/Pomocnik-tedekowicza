@@ -2,8 +2,154 @@
 
 {% block page_content %}
 <div>
+    <p id="header" style="font-weight:bold"></p>
+    <table id="table">
+        <tr id="tableHeader">
+            <th id="headL"></th>
+            <th id="headR"></th>
+        </tr>
+        <tr id="row1">
+            <td id="row1L"></td>
+            <td id="row1R"></td>
+        </tr>
+        <tr id="row2">
+            <td id="row2L"></td>
+            <td id="row2R"></td>
+        </tr>
+        <tr id="row3">
+            <td id="row3L"></td>
+            <td id="row3R"></td>
+        </tr>
+        <tr id="row4">
+            <td id="row4L"></td>
+            <td id="row4R"></td>
+        </tr>
+        <tr id="row5">
+            <td id="row5L"></td>
+            <td id="row5R"></td>
+        </tr>
+        <tr id="row6">
+            <td id="row6L"></td>
+            <td id="row6R"></td>
+        </tr>
+        <tr id="row7">
+            <td id="row7L"></td>
+            <td id="row7R"></td>
+        </tr>
+    </table>
+    <p id="paragraph1"></p>
 </div>
 <script>
-    
+    var id = parseInt('{{id}}')
+    var table = document.getElementById("table")
+
+    switch (id) {
+        case 1:
+            document.getElementById('header').innerHTML = 'Długość drogi hamowania'
+
+            document.getElementById('headL').innerHTML = "Prędkość (km/h)"
+            document.getElementById('headR').innerHTML = "Odległość (m)"
+
+            document.getElementById('row1L').innerHTML = "0-40"
+            document.getElementById('row1R').innerHTML = "250"
+
+            document.getElementById('row2L').innerHTML = "41-60"
+            document.getElementById('row2R').innerHTML = "250"
+
+            document.getElementById('row3L').innerHTML = "61-100"
+            document.getElementById('row3R').innerHTML = "250"
+            
+            document.getElementById('row4L').innerHTML = "101-140"
+            document.getElementById('row4R').innerHTML = "250"
+            
+            document.getElementById('row5L').innerHTML = "141-160"
+            document.getElementById('row5R').innerHTML = "250"
+
+            document.getElementById('row6L').remove()
+            document.getElementById('row6R').remove()
+            document.getElementById('row6').remove()
+
+            document.getElementById('row7L').remove()
+            document.getElementById('row7R').remove()
+            document.getElementById('row7').remove()
+
+            break;
+        case 2:
+            document.getElementById('header').innerHTML = 'Długość peronów pasażerskich'
+            
+            document.getElementById('headL').innerHTML = "Rodzaj"
+            document.getElementById('headR').innerHTML = "Długość (m)"
+
+            document.getElementById('row1L').innerHTML = "Międzynarodowe"
+            document.getElementById('row1R').innerHTML = "420"
+
+            document.getElementById('row2L').innerHTML = "Dalekobieżne"
+            document.getElementById('row2R').innerHTML = "320"
+
+            document.getElementById('row3L').innerHTML = "Lokalne"
+            document.getElementById('row3R').innerHTML = "220"
+            
+            document.getElementById('row4L').innerHTML = "Podmiejskie"
+            document.getElementById('row4R').innerHTML = "200"
+
+            document.getElementById('row5L').remove()
+            document.getElementById('row5R').remove()
+            document.getElementById('row5').remove()
+
+            document.getElementById('row6L').remove()
+            document.getElementById('row6R').remove()
+            document.getElementById('row6').remove()
+
+            document.getElementById('row7L').remove()
+            document.getElementById('row7R').remove()
+            document.getElementById('row7').remove()
+
+            break;
+        case 3:
+            document.getElementById('header').innerHTML = 'Odległość do W6a'
+
+            document.getElementById('headL').innerHTML = "Prędkość (km/h)"
+            document.getElementById('headR').innerHTML = "Odległość (m)"
+
+            document.getElementById('row1L').innerHTML = "160"
+            document.getElementById('row1R').innerHTML = "960 - 1280"
+
+            document.getElementById('row2L').innerHTML = "140"
+            document.getElementById('row2R').innerHTML = "840 - 1120"
+
+            document.getElementById('row3L').innerHTML = "120"
+            document.getElementById('row3R').innerHTML = "720 - 960"
+            
+            document.getElementById('row4L').innerHTML = "100"
+            document.getElementById('row4R').innerHTML = "600 - 800"
+
+            document.getElementById('row5L').innerHTML = "80"
+            document.getElementById('row5R').innerHTML = "480 - 640"
+            
+            document.getElementById('row6L').innerHTML = "60"
+            document.getElementById('row6R').innerHTML = "360 - 480"
+
+            document.getElementById('row7L').innerHTML = "40"
+            document.getElementById('row7R').innerHTML = "240 - 320"
+
+            document.getElementById('paragraph1').innerHTML = "Odległość otrzymujemy mnożąc vmax przez 6 do 8"
+
+            break;
+    }
 </script>
+<style>
+    #table {
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: normal;
+        border: solid 1px;
+        border-collapse: separate;
+    }
+    td{
+        border: solid 1px;
+    }
+    th{
+        border: solid 1px;
+    }
+</style>
 {% endblock %}
