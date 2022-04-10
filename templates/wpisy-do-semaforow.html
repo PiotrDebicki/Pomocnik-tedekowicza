@@ -223,7 +223,36 @@
                 break;
             case 2:
                 //Semafor SBL
-                document.getElementById('output').innerHTML = "Ten typ semafora nie jest jeszcze dostępny :("
+                var lightsQuantity2 = ~~lightsQuantity
+                if (lightsQuantity == 1 || lightsQuantity == 3) {
+                    lightsQuantity2--
+                }
+
+                switch (~~document.getElementById('odchyl').value) {
+                    case 1:
+                        deviation = "slup-sbl-p"
+                        var secondComa = lightsQuantity2.toString() + "k-sm-p"
+                        var thirdComa = "drab-" + lightsQuantity.toString() + "k-p"
+                        break;
+                    case 2:
+                        deviation = "slup-sbl-y"
+                        var secondComa = lightsQuantity2.toString() + "k-b-yny"
+                        var thirdComa = "drab-" + lightsQuantity.toString() + "k-y"
+                        break;
+                    case 3:
+                        deviation = "slup-sbl-yn"
+                        var secondComa = lightsQuantity2.toString() + "k-b-yny"
+                        var thirdComa = "drab-" + lightsQuantity.toString() + "k-yn"
+                        break;
+                }
+
+                var outputMatrix = [deviation, secondComa, thirdComa, "", document.getElementById('sign1').value, document.getElementById('sign2').value, document.getElementById('sign3').value, "", "", document.getElementById('komora5').value, document.getElementById('komora4').value, document.getElementById('komora3').value, "", "", ""]
+
+                var input = outputMatrix.join(",")
+
+                setClipboard(input)
+                document.getElementById('output').innerHTML = "Kod semafora został skopiowany!"
+
                 break;
             case 3:
                 //Powtarzacz
